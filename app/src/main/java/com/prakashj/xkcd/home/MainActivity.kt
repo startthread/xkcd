@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import coil.api.load
 import com.prakashj.xkcd.databinding.ActivityMainBinding
 import com.prakashj.xkcd.infra.di.AppViewModelFactory
 import com.prakashj.xkcd.infra.network.Comic
@@ -25,9 +26,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupLiveData(viewModel: MainViewModel) {
-        viewModel.comicLiveData.observe(this, Observer<Comic> { comic: Comic ->
-            binding.titleTextView.text = comic.title
-            binding.alternateTextView.text = comic.alt
-        })
+        viewModel.comicLiveData
+            .observe(this, Observer<Comic> { comic: Comic ->
+                binding.titleTextView.text = comic.title
+                binding.alternateTextView.text = comic.alt
+                binding.transcriptTextView.text = comic.transcript
+                binding.imageView.load(comic.img)
+            })
     }
 }
