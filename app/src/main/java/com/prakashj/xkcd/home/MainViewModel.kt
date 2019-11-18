@@ -13,13 +13,9 @@ private const val TAG = "MainViewModel"
 
 class MainViewModel(private val apiService: ApiService) : ViewModel() {
 
-    val comicLiveData: MutableLiveData<Comic> = MutableLiveData<Comic>()
+    val comicLiveData: MutableLiveData<Comic> = MutableLiveData()
 
-    init {
-        getCurrentComic()
-    }
-
-    private fun getCurrentComic() {
+    fun getCurrentComic() {
         viewModelScope.launch {
             val comicResponse: Response<Comic> = apiService.getCurrentComic()
 
@@ -27,9 +23,46 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
             Log.d(TAG, comicResponse.body().toString())
 
             if (comicResponse.isSuccessful) {
-
                 comicResponse.body()?.apply {
                     comicLiveData.postValue(comicResponse.body())
+                }
+            }
+        }
+    }
+
+    fun onNextComicClick() {
+        viewModelScope.launch {
+            val currentComic = comicLiveData.value
+
+            currentComic?.apply {
+                val comicResponse: Response<Comic> = apiService.getComic(currentComic.num + 1)
+
+                Log.d(TAG, comicResponse.toString())
+                Log.d(TAG, comicResponse.body().toString())
+
+                if (comicResponse.isSuccessful) {
+                    comicResponse.body()?.apply {
+                        comicLiveData.postValue(comicResponse.body())
+                    }
+                }
+            }
+        }
+    }
+
+    fun onPrevComicClick() {
+        viewModelScope.launch {
+            val currentComic = comicLiveData.value
+
+            currentComic?.apply {
+                val comicResponse: Response<Comic> = apiService.getComic(currentComic.num - 1)
+
+                Log.d(TAG, comicResponse.toString())
+                Log.d(TAG, comicResponse.body().toString())
+
+                if (comicResponse.isSuccessful) {
+                    comicResponse.body()?.apply {
+                        comicLiveData.postValue(comicResponse.body())
+                    }
                 }
             }
         }

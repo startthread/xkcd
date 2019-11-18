@@ -22,7 +22,20 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, AppViewModelFactory()).get(MainViewModel::class.java)
 
+        setupView(binding)
         setupLiveData(viewModel)
+
+        viewModel.getCurrentComic()
+    }
+
+    private fun setupView(binding: ActivityMainBinding) {
+        binding.nextButton.setOnClickListener {
+            viewModel.onNextComicClick()
+        }
+
+        binding.prevButton.setOnClickListener {
+            viewModel.onPrevComicClick()
+        }
     }
 
     private fun setupLiveData(viewModel: MainViewModel) {
