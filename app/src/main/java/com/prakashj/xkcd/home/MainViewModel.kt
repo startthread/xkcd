@@ -1,6 +1,5 @@
 package com.prakashj.xkcd.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,9 +18,6 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
         viewModelScope.launch {
             val comicResponse: Response<Comic> = apiService.getCurrentComic()
 
-            Log.d(TAG, comicResponse.toString())
-            Log.d(TAG, comicResponse.body().toString())
-
             if (comicResponse.isSuccessful) {
                 comicResponse.body()?.apply {
                     comicLiveData.postValue(comicResponse.body())
@@ -35,10 +31,8 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
             val currentComic = comicLiveData.value
 
             currentComic?.apply {
-                val comicResponse: Response<Comic> = apiService.getComic(currentComic.num + 1)
-
-                Log.d(TAG, comicResponse.toString())
-                Log.d(TAG, comicResponse.body().toString())
+                val nextComicNumber = currentComic.num + 1
+                val comicResponse: Response<Comic> = apiService.getComic(nextComicNumber)
 
                 if (comicResponse.isSuccessful) {
                     comicResponse.body()?.apply {
@@ -54,10 +48,8 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
             val currentComic = comicLiveData.value
 
             currentComic?.apply {
-                val comicResponse: Response<Comic> = apiService.getComic(currentComic.num - 1)
-
-                Log.d(TAG, comicResponse.toString())
-                Log.d(TAG, comicResponse.body().toString())
+                val prevComicNumber = currentComic.num - 1
+                val comicResponse: Response<Comic> = apiService.getComic(prevComicNumber)
 
                 if (comicResponse.isSuccessful) {
                     comicResponse.body()?.apply {
