@@ -3,8 +3,11 @@ package com.prakashj.xkcd.home
 import com.google.common.truth.Truth.assertThat
 import com.prakashj.xkcd.infra.network.ApiService
 import com.prakashj.xkcd.infra.network.Comic
-import kotlinx.coroutines.test.runBlockingTest
+import com.prakashj.xkcd.utils.CoroutineTestRule
+import com.prakashj.xkcd.utils.LiveDataTestRule
+import com.prakashj.xkcd.utils.TestDispatcherProvider
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -13,6 +16,12 @@ import org.mockito.MockitoAnnotations
 import retrofit2.Response
 
 class MainViewModelTest {
+
+    @get:Rule
+    val liveDataTestRule = LiveDataTestRule()
+
+    @get:Rule
+    val coroutineTestRule = CoroutineTestRule()
 
     @Mock
     lateinit var apiService: ApiService
@@ -23,11 +32,11 @@ class MainViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        viewModel = MainViewModel(apiService)
+        viewModel = MainViewModel(apiService, TestDispatcherProvider())
     }
 
     @Test
-    fun testGetCurrentComic_onSuccess_postCurrentComic() = runBlockingTest {
+    fun testGetCurrentComic_onSuccess_postCurrentComic() = coroutineTestRule.runBlockingTest {
         val comic = mock(Comic::class.java)
         val response: Response<Comic> = Response.success(comic)
 

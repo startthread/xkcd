@@ -1,6 +1,7 @@
 package com.prakashj.xkcd.infra.di
 
 import com.prakashj.xkcd.BuildConfig
+import com.prakashj.xkcd.infra.DispatcherProvider
 import com.prakashj.xkcd.infra.network.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,6 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Injections {
     companion object {
+
+        fun provideDispatcherProvider(): DispatcherProvider {
+            return DispatcherProvider()
+        }
 
         fun provideApiService(): ApiService {
 
