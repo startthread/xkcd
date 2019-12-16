@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.prakashj.xkcd.infra.DispatcherProvider
 import com.prakashj.xkcd.infra.network.ApiService
 import com.prakashj.xkcd.infra.network.Comic
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -33,7 +32,7 @@ class MainViewModel(
     }
 
     fun onNextComicClick() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcherProvider.IO) {
             val currentComic = comicLiveData.value
 
             currentComic?.apply {
@@ -50,7 +49,7 @@ class MainViewModel(
     }
 
     fun onPrevComicClick() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcherProvider.IO) {
             val currentComic = comicLiveData.value
 
             currentComic?.apply {
