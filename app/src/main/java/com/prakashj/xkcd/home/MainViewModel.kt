@@ -21,12 +21,9 @@ class MainViewModel(
     fun getCurrentComic() {
         viewModelScope.launch(dispatcherProvider.IO) {
             val comicResponse: Response<Comic> = apiService.getCurrentComic()
-            //Log.d(TAG, "getCurrentComic thread: " + Thread.currentThread())
 
             if (comicResponse.isSuccessful) {
-                comicResponse.body()?.apply {
-                    comicLiveData.postValue(comicResponse.body())
-                }
+                comicLiveData.postValue(comicResponse.body())
             }
         }
     }
@@ -40,9 +37,7 @@ class MainViewModel(
                 val comicResponse: Response<Comic> = apiService.getComic(nextComicNumber)
 
                 if (comicResponse.isSuccessful) {
-                    comicResponse.body()?.apply {
-                        comicLiveData.postValue(comicResponse.body())
-                    }
+                    comicLiveData.postValue(comicResponse.body())
                 }
             }
         }
@@ -57,9 +52,7 @@ class MainViewModel(
                 val comicResponse: Response<Comic> = apiService.getComic(prevComicNumber)
 
                 if (comicResponse.isSuccessful) {
-                    comicResponse.body()?.apply {
-                        comicLiveData.postValue(comicResponse.body())
-                    }
+                    comicLiveData.postValue(comicResponse.body())
                 }
             }
         }
