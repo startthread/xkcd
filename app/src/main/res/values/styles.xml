@@ -2,7 +2,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:fontFamily">@font/comicneue_regular</item>
 
         <item name="colorPrimaryVariant">#00e676</item>
         <item name="colorSecondaryVariant">#66ffa6</item>
