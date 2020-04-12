@@ -59,6 +59,7 @@ dependencies {
 
     // third-party
     implementation "io.coil-kt:coil:0.8.0"
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
     // unit test
     testImplementation 'junit:junit:4.12'
