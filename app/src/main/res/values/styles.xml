@@ -1,10 +1,28 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:fontFamily">@font/roboto_mono</item>
+
+        <item name="colorPrimaryVariant">#00e676</item>
+        <item name="colorSecondaryVariant">#66ffa6</item>
+        <item name="colorSurface">#eceff1</item>
+        <item name="colorOnPrimary">#ffffff</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorOnBackground">#eceff1</item>
+        <item name="colorOnError">#ff3d00</item>
+        <item name="colorOnSurface">#000000</item>
+        <item name="scrimBackground">@color/mtrl_scrim_color</item>
+
+        <item name="textAppearanceBody1">@style/TextAppearance.MyApp.Body1</item>
+
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.OutlinedButton
+        </item>
+
+    </style>
+
+    <style name="TextAppearance.MyApp.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
 </resources>

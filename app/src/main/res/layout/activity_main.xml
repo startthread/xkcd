@@ -14,18 +14,21 @@
 
         <TextView
             android:id="@+id/title_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textAppearance="?textAppearanceHeadline5"
             tools:text="Title" />
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
             android:contentDescription="@null"
+            android:scaleType="fitCenter"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -33,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textAppearance="?textAppearanceBody1"
             tools:text="Alternate Texts" />
 
         <TextView
@@ -40,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textAppearance="?textAppearanceBody1"
             tools:text="Alternate Texts" />
 
         <LinearLayout
@@ -50,14 +55,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/prev_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prev" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
